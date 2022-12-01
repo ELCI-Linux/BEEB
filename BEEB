@@ -1,0 +1,21 @@
+#! /bin/bash
+
+#NOTE: This a very rudimentary outline of this projects aims.
+
+source ~/.bashrc
+
+if [ $beeb_style == *”gui”* ]]; then
+main=$(zenity –title=”beeb” \
+–text=”Select your News source”)
+else
+main=$(echo $styles | dmenu -p “Select your news source”)
+Fi
+
+if [ ${#main} -gt “0” ]; then
+	if [[ $main == *”BBC Sport”* ]]; then
+	sport=$(cat /bin/BEEB/sports-list | dmenu -p “Select a sport”)
+	xdg-open https://bbc.co.uk/sport/$sport
+	else
+	news=$(cat /bin/BEEB/news-list | dmenu -p “Select a news category”)
+	fi
+fi
